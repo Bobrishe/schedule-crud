@@ -1,0 +1,9 @@
+services:
+  postgres-db:
+    container_name: postgres-db
+    image: postgres
+    ports:
+      - 5430:5432
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgrespass
