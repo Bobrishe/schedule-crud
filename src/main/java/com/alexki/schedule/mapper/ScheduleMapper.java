@@ -1,32 +1,34 @@
-package com.alexki.tasklist.mapper;
+package com.alexki.schedule.mapper;
 
-import com.alexki.tasklist.dto.TaskListDto;
-import com.alexki.tasklist.entities.*;
+import com.alexki.schedule.dto.ScheduleDto;
+import com.alexki.schedule.entities.Schedule;
+import com.alexki.schedule.entities.Task;
+import com.alexki.schedule.entities.TaskStatus;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
 @Component
-public class TaskListMapper implements BaseMapper<TaskListDto, TaskList> {
+public class ScheduleMapper implements BaseMapper<ScheduleDto, Schedule> {
 
     private final TaskMapper taskMapper;
 
-    public TaskListMapper(TaskMapper taskMapper) {
+    public ScheduleMapper(TaskMapper taskMapper) {
         this.taskMapper = taskMapper;
     }
 
     @Override
-    public TaskListDto toDto(TaskList taskList) {
-        return new TaskListDto(
-                taskList.getId(),
-                taskList.getTitle(),
-                taskList.getDescription(),
-                Optional.ofNullable(taskList.getTasks()).map(List::size)
+    public ScheduleDto toDto(Schedule schedule) {
+        return new ScheduleDto(
+                schedule.getId(),
+                schedule.getTitle(),
+                schedule.getDescription(),
+                Optional.ofNullable(schedule.getTasks()).map(List::size)
                         .orElse(0),
-                calculateProgress(taskList.getTasks()),
-                Optional.ofNullable(taskList.getTasks())
-                        .map(tasks -> tasks.stream()
+                calculateProgress(schedule.getTasks()),
+                Optional.ofNullable(schedule.getTasks())
+                        .map(schedules -> schedules.stream()
                                 .map(taskMapper::toDto).toList())
                                 .orElse(null)
 
@@ -34,8 +36,8 @@ public class TaskListMapper implements BaseMapper<TaskListDto, TaskList> {
     }
 
     @Override
-    public TaskList toEntity(TaskListDto dto) {
-        return new TaskList(
+    public Schedule toEntity(ScheduleDto dto) {
+        return new Schedule(
                 dto.id(),
                 dto.title(),
                 dto.description(),

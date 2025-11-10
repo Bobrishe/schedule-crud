@@ -1,13 +1,13 @@
-package com.alexki.tasklist;
+package com.alexki.schedule;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TasksListApplication {
+public class ScheduleApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TasksListApplication.class, args);
+        SpringApplication.run(ScheduleApplication.class, args);
     }
 
 }

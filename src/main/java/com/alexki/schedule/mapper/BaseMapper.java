@@ -1,4 +1,4 @@
-package com.alexki.tasklist.mapper;
+package com.alexki.schedule.mapper;
 
 public interface BaseMapper<T, M> {
 

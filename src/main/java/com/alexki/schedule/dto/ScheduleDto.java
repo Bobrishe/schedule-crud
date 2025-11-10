@@ -1,9 +1,9 @@
-package com.alexki.tasklist.dto;
+package com.alexki.schedule.dto;
 
 import java.util.List;
 import java.util.UUID;
 
-public record TaskListDto(
+public record ScheduleDto(
         UUID id,
         String title,
         String description,

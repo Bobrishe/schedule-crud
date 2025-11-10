@@ -1,4 +1,4 @@
-package com.alexki.tasklist.entities;
+package com.alexki.schedule.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tasks_list")
+@Table(name = "schedule")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TaskList {
+public class Schedule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -27,7 +27,7 @@ public class TaskList {
     @Column
     private String description;
 
-    @OneToMany(mappedBy = "taskList", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks;
 
     @Column(nullable = false)
