@@ -26,11 +26,6 @@ public class TaskService {
         this.scheduleRepository = scheduleRepository;
     }
 
-
-    public List<Task> getScheduleById(UUID id) {
-        return taskRepository.findByScheduleId(id);
-    }
-
     public Task getTaskByListIdAndId(UUID scheduleId, UUID id) {
         return taskRepository.findByScheduleIdAndId(scheduleId, id).orElseThrow(() -> new IllegalArgumentException("Not found"));
     }

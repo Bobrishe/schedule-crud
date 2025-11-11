@@ -3,6 +3,7 @@ package com.alexki.schedule.controller.rest;
 import com.alexki.schedule.dto.TaskDto;
 import com.alexki.schedule.entities.Task;
 import com.alexki.schedule.mapper.TaskMapper;
+import com.alexki.schedule.services.ScheduleService;
 import com.alexki.schedule.services.TaskService;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,16 +16,18 @@ public class TaskApiController {
 
     private final TaskService taskService;
     private final TaskMapper taskMapper;
+    private final ScheduleService scheduleService;
 
-    public TaskApiController(TaskService taskService, TaskMapper taskMapper) {
+    public TaskApiController(TaskService taskService, TaskMapper taskMapper, ScheduleService scheduleService) {
         this.taskService = taskService;
         this.taskMapper = taskMapper;
+        this.scheduleService = scheduleService;
     }
 
 
     @GetMapping()
     public List<TaskDto> getSchedule(@PathVariable UUID schedule_id) {
-        return taskService.getScheduleById(schedule_id)
+        return scheduleService.getScheduleTasksById(schedule_id)
                 .stream().map(taskMapper::toDto)
                 .toList();
     }

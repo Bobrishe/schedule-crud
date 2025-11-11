@@ -42,9 +42,10 @@ public class TaskController {
 
     @GetMapping()
     public String getTasks(@PathVariable UUID schedule_id, Model model) {
-        List<TaskDto> taskDtoList = taskService.getScheduleById(schedule_id)
+        List<TaskDto> taskDtoList = scheduleService.getScheduleTasksById(schedule_id)
                 .stream().map(taskMapper::toDto)
                 .toList();
+
         model.addAttribute("tasks", taskDtoList);
 
         return "task/index";

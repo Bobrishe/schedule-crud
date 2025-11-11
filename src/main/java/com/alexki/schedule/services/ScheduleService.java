@@ -56,7 +56,7 @@ public class ScheduleService {
         return scheduleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(NOT_FOUND));
     }
 
-    public List<Task> getScheduleTasks(UUID id) {
+    public List<Task> getScheduleTasksById(UUID id) {
         if (id == null) {
             throw new NullPointerException(ID_IS_NULL);
         }
