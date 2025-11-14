@@ -13,14 +13,13 @@
 
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <input th:field="*{email}" type="email" name="email" class="form-control" placeholder="Enter email" required >
+                    <input th:field="*{email}" type="email" name="email" class="form-control" placeholder="Enter email" required>
                     <div th:if="${#fields.hasErrors('email')}" class="text-danger mt-1" th:errors="*{email}">Email Error</div>
                 </div>
 
-                <!-- Password -->
                 <div class="mb-3">
                     <label class="form-label">Password</label>
-                    <input th:field="*{password}" type="password"  name="password" class="form-control" placeholder="Enter password" required>
+                    <input th:field="*{password}" type="password"  name="password" class="form-control" placeholder="Enter password" required minlength="10">
                     <div th:if="${#fields.hasErrors('password')}" class="text-danger mt-1" th:errors="*{password}">Password Error</div>
                 </div>
 

@@ -34,13 +34,18 @@ public class UserService implements UserDetailsService {
     }
 
 
-    public void registerUser(User user){
+    public User registerUser(User user) throws IllegalArgumentException {
 
         String encodedPassword = passwordEncoder.encode(user.getPassword());
 
         user.setPassword(encodedPassword);
         user.setRole(UserRole.ADMIN);
 
-        userRepository.save(user);
+        userRepository.findByEmail(user.getEmail()).ifPresent(existingUser -> {
+            throw new IllegalArgumentException("User with email " + user.getEmail() + " already exists.");
+        });
+
+        return userRepository.save(user);
+
     }
 }
