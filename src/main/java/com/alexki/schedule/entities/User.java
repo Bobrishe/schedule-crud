@@ -22,8 +22,6 @@ public class User {
     private UUID id;
 
     @Column(name = "email", nullable = false, unique = true)
-    @Email(message = "Email should be valid")
-    @NotBlank(message = "Email is mandatory")
     private String email;
 
     @Column(name = "password", nullable = false)

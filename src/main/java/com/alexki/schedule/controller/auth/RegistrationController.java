@@ -35,6 +35,12 @@ public class RegistrationController {
         if (bindingResult.hasErrors())
             return "auth/register";
 
+        try{
+            userService.registerUser(userMapper.toEntity(userDto));
+        } catch (IllegalArgumentException e) {
+            bindingResult.rejectValue("email", "error.user", e.getMessage());
+            return "auth/register";
+        }
 
         userService.registerUser(userMapper.toEntity(userDto));
 
