@@ -34,13 +34,13 @@ public class UserService implements UserDetailsService {
     }
 
 
-    public User registerUser(User user){
+    public void registerUser(User user){
 
         String encodedPassword = passwordEncoder.encode(user.getPassword());
 
         user.setPassword(encodedPassword);
         user.setRole(UserRole.ADMIN);
 
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 }
